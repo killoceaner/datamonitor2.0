@@ -1,0 +1,13 @@
+csdn_ask topic crawledTime
+csdn_blogs blog crawledTime
+csdn_topics blog crawledTime
+cnblog_news news crawledTime
+cnblog_question topic crawledTime
+dewen_question topic crawledTime
+freecode_projects project crawledTime
+iteye_ask topic crawledTime
+openhub_project project crawledTime
+oschina_project project crawledTime
+oschina_question topic crawledTime
+sourceforge_project project crawledTime
+stackoverflow_q topic crawledTime

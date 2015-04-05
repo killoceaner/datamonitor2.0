@@ -1,0 +1,13 @@
+csdn_ask topic extractTime
+csdn_blogs blog extractTime
+csdn_topics blog extractTime
+cnblog_news news extractTime
+cnblog_question topic extractTime
+dewen_question topic extractTime
+freecode_projects project extractTime
+iteye_ask topic extractTime
+openhub_project project extractTime
+oschina_project project extractTime
+oschina_question topic extractTime
+sourceforge_project project extractTime
+stackoverflow_q topic extractTime
