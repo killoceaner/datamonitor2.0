@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.ossean.dao.DestSource;
@@ -21,7 +22,7 @@ import com.ossean.datamonitor.extractorsource.ExtractorSourceData;
 import com.ossean.util.TxtRead;
 
 
-@Repository("Monitor")
+@Component("Monitor")
 public class Monitor extends TimerTask {
 
 	@SuppressWarnings("restriction")
@@ -149,7 +150,7 @@ public class Monitor extends TimerTask {
 	}
 	public static void main(String[] args) {
      	ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/applicationContext*.xml");
-        Monitor m = (Monitor) applicationContext.getBean("Monitor");
+        Monitor m = (Monitor) applicationContext.getBean(Monitor.class);
 //		Main m = new Main();
 		m.begin();
 	}
