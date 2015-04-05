@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="threshold" value="ERROR" />
+            <param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss,SSS} %-5p %c(%F:%L) ## %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="./log/error.log" />
+        <param name="threshold" value="ERROR" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss,SSS} %-5p %c(%F:%L) ## %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="file_log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="./log/webmagic.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss,SSS} %-5p %c(%F:%L) ## %m%n" />
+        </layout>
+    </appender>
+
+
+    <!-- 邮件（只有ERROR时才会发送！） -->
+    <appender name="MAIL"  class="org.apache.log4j.net.SMTPAppender">
+        <param name="threshold" value="debug" />
+        <!-- 日志的错误级别   <param name="threshold" value="fatal"/>  -->
+        <!-- 缓存文件大小，日志达到512K时发送Email -->
+        <param name="BufferSize" value="1" />
+        <!-- 单位K -->
+        <param name="From" value="ossean_debug@163.com" />
+        <param name="SMTPHost" value="smtp.163.com" />
+        <param name="Subject" value="ossean-crawler-debug-log4jMessage" />
+        <param name="To" value="gcm3651@126.com" />
+        <param name="SMTPUsername" value="ossean_debug" />
+        <param name="SMTPPassword" value="goodwell123" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p]-[%c] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 数据库状态-->
+    <appender name="DATABASE" class="org.apache.log4j.jdbc.JDBCAppender">
+        <param name="URL" value="jdbc:mysql://127.0.0.1:3306/webmagic?characterEncoding=UTF-8"/>
+        <param name="driver" value="com.mysql.jdbc.Driver"/>
+        <param name="user" value="root"/>
+        <param name="password" value="1234"/>
+        <param name="sql" value="INSERT INTO log4j(stamp,thread,info_level,class,message,logger) VALUES ('%d{yyyy-MM-dd HH:mm:ss}','%t','%p','%c','%m','%l')"/>
+    <!--     <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"   value="INSERT INTO log4j(stamp,thread,info_level,class,message,logger) VALUES ('%d{yyyy-MM-dd HH:mm:ss}','%t','%.50p','%.50c','%.1000m','%.50l')" />
+        </layout>-->
+           <!-- 过滤输出时Log内容，在这里，LevelMin是ERROR，LevelMax都 FATAL，所以输出DEBUG级别到FATAL级别的LOG数据-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="FATAL"/>
+        </filter>
+    </appender>
+
+    <logger name="org.apache" additivity="false">
+        <level value="warn" />
+        <appender-ref ref="stdout" />
+    </logger>
+
+    <root>
+        <level value="info" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="file" />
+        <appender-ref ref="file_log" />
+<!--        <appender-ref ref="MAIL" />-->
+<!--        <appender-ref ref="DATABASE" />	-->
+    </root>
+
+</log4j:configuration>
