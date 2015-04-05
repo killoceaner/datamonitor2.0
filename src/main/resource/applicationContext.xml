@@ -15,5 +15,8 @@
 
     <!-- 设置注释scan的具体起始位置 -->
     <context:component-scan base-package="com.ossean.datamonitor"/>
+    
+    <bean id = "Monitor" class="com.ossean.datamonitor.Monitor">
+    </bean>
 
 </beans>
